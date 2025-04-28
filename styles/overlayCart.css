@@ -1,0 +1,127 @@
+#overlay-cart_overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100dvh;
+    width: 100%;
+    z-index: 9999;
+    background-color: white;
+    display: none;
+}
+
+.overlay-cart_all {
+    padding: 3.2rem;
+
+    h2 {
+        font-size: 4rem;
+        margin-bottom: 5rem;
+    }
+}
+
+#overlay-cart-items {
+    margin-bottom: 2rem;
+}
+
+.overlay-sum {
+    display: flex;
+    justify-content: space-between;
+    strong {
+        font-size: 1.6rem;
+    }
+    span {
+        font-size: 1.6rem;
+    }
+    margin-bottom: 2rem;
+}
+
+.overlay-delivery_cost {
+    display: flex;
+    justify-content: space-between;
+    strong {
+        font-size: 1.4rem;
+    }
+    span {
+        font-size: 1.4rem;
+    }
+    margin-bottom: 0.5rem;
+}
+
+.overlay-cart_amount {
+    display: flex;
+    gap: 1rem;
+    p {
+        font-size: 1.2rem;
+        margin-bottom: 2rem;
+    }
+    img {
+        height: 1.2rem;
+        width: auto;
+    }
+}
+
+.overlay-cart_amount:hover {
+    img {
+        cursor: pointer;
+    }
+}
+
+#overlay-order-button {
+    font-size: 2rem;
+    background-color: #ff6000;
+    color: white;
+    padding: 1rem;
+    border-radius: 1rem;
+    width: 100%;
+    border-width: 0;
+    margin-bottom: 3rem;
+}
+
+#overlay-order-button:hover {
+    cursor: pointer;
+}
+
+#overlay-order-message {
+    display: none;
+    background-color: #4caf50;
+    color: white;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    font-size: 1.6rem;
+    box-shadow: 0 0 1rem rgba(0, 0, 0, 0.2);
+    z-index: 2;
+    text-align: center;
+}
+
+#overlay-order-message.show {
+    display: block;
+    opacity: 1;
+}
+
+#overlay-error-message {
+    display: none;
+    background-color: #f44336;
+    color: white;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    font-size: 1.6rem;
+    box-shadow: 0 0 1rem rgba(0, 0, 0, 0.2);
+    z-index: 2;
+    text-align: center;
+}
+
+#overlay-error-message.show {
+    display: block;
+    opacity: 1;
+}
+
+#close-overlay {
+    height: 4rem;
+    width: auto;
+    position: fixed;
+    top: 3.2rem;
+    right: 3.2rem;
+}
+
+#close-overlay:hover {
+    cursor: pointer;
+}

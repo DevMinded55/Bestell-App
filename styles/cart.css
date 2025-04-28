@@ -1,0 +1,140 @@
+.cart {
+    flex: 1;
+    margin-left: 3.2rem;
+    background-color: #f9f9f9;
+    padding: 1.6rem;
+    border-radius: 1.28rem;
+    max-width: 300px;
+    box-shadow: 0 0.32rem 0.64rem rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    font-size: 2rem;
+    h2 {
+        margin-bottom: 2rem;
+    }
+    img {
+        height: 1rem;
+        width: auto;
+    }
+    @media (max-width: 795px) {
+        display: none;
+    }
+}
+
+.cart_all {
+    position: sticky;
+    top: 2rem;
+    overflow-y: auto;
+}
+
+.cart_item {
+    display: flex;
+    justify-content: space-between;
+    p {
+        font-size: 1.4rem;
+    }
+    margin-bottom: 1rem;
+}
+
+#cart-items {
+    margin-bottom: 2rem;
+}
+
+.sum {
+    display: flex;
+    justify-content: space-between;
+    strong {
+        font-size: 1.6rem;
+    }
+    span {
+        font-size: 1.6rem;
+    }
+    margin-bottom: 2rem;
+}
+
+.delivery_cost {
+    display: flex;
+    justify-content: space-between;
+    strong {
+        font-size: 1.4rem;
+    }
+    span {
+        font-size: 1.4rem;
+    }
+    margin-bottom: 0.5rem;
+}
+
+.cart_amount {
+    display: flex;
+    gap: 1rem;
+    p {
+        font-size: 1.2rem;
+        margin-bottom: 2rem;
+    }
+    img {
+        height: 1.2rem;
+        width: auto;
+    }
+}
+
+.cart_amount:hover {
+    img {
+        cursor: pointer;
+    }
+}
+
+.cart_line {
+    height: 1px;
+    background-color: black;
+    margin-bottom: 1rem;
+}
+
+#order-button {
+    font-size: 2rem;
+    background-color: #ff6000;
+    color: white;
+    padding: 1rem;
+    border-radius: 1rem;
+    width: 100%;
+    border-width: 0;
+    margin-bottom: 3rem;
+}
+
+#order-button:hover {
+    cursor: pointer;
+}
+
+#order-message {
+    display: none;
+    background-color: #4caf50;
+    color: white;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    font-size: 1.6rem;
+    box-shadow: 0 0 1rem rgba(0, 0, 0, 0.2);
+    z-index: 2;
+    text-align: center;
+}
+
+#order-message.show {
+    display: block;
+    opacity: 1;
+}
+
+#error-message {
+    display: none;
+    background-color: #f44336;
+    color: white;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    font-size: 1.6rem;
+    box-shadow: 0 0 1rem rgba(0, 0, 0, 0.2);
+    z-index: 2;
+    text-align: center;
+}
+
+#error-message.show {
+    display: block;
+    opacity: 1;
+}

@@ -114,14 +114,3 @@
     opacity: 1;
 }
 
-#close-overlay {
-    height: 4rem;
-    width: auto;
-    position: fixed;
-    top: 3.2rem;
-    right: 3.2rem;
-}
-
-#close-overlay:hover {
-    cursor: pointer;
-}

@@ -7,67 +7,98 @@ function renderDishes() {
 }
 
 function addToCart(k) {
-    let selectedItem = menuItems[k];
-    let cartItem = cart.find((item) => item.name === selectedItem.name);
-
+        let selectedItem = menuItems[k];
+        let cartItem = cart.find((item) => item.name === selectedItem.name);
     if (cartItem) {
-        cartItem.amount++;
+        addToCartPlus(cartItem);
     } else {
-        cart.push({
-            name: selectedItem.name,
-            price: selectedItem.price,
-            amount: 1,
-        });
+        addToCartNew(selectedItem)
     }
-    renderCart();
 }
 
-function renderCart() {
+function addToCartPlus(cartItem){
+    cartItem.amount++;
+    let cartItemRef = document.getElementById(
+        `cart_amount${cart.findIndex(
+            (item) => item.name === cartItem.name
+        )}`
+    );
+    cartItemRef.innerText = cartItem.amount;
+    renewCartSum();
+}
+
+function addToCartNew(selectedItem){
+    cart.push({
+        name: selectedItem.name,
+        price: selectedItem.price,
+        amount: 1,
+    });
     let items = document.getElementById("cart-items");
+    items.innerHTML += getCartItems(cart.length - 1);
+    renewCartSum();
+}
+
+function renewCartSum(){
     let total = 0;
     let delivery = 1.9;
-    items.innerHTML = "";
     for (let i = 0; i < cart.length; i++) {
-        items.innerHTML += getCartItems(i);
         total += cart[i].price * cart[i].amount + delivery;
     }
     document.getElementById("total").innerHTML =
         total.toFixed(2).replace(".", ",") + " €";
 }
 
+function renderCart() {
+    let items = document.getElementById("cart-items");
+    items.innerHTML = "";
+    for (let i = 0; i < cart.length; i++) {
+        items.innerHTML += getCartItems(i);
+    }
+}
+
 function increaseAmount(j) {
     cart[j].amount++;
-    renderCart();
-    renderCartOverlay();
+    let cartItemRef = document.getElementById(`cart_amount${j}`);
+    cartItemRef.innerHTML = cart[j].amount;
+    renewCartSum();
 }
 
 function decreaseAmount(l) {
     if (cart[l].amount > 1) {
         cart[l].amount--;
+        let cartItemRef = document.getElementById(`cart_amount${l}`);
+        cartItemRef.innerHTML = cart[l].amount;
+        renewCartSum();
     } else {
         cart.splice(l, 1);
+        renderCart();
+        renewCartSum();
     }
+}
+
+function deleteDish(j) {
+    cart.splice(j, 1);
     renderCart();
-    renderCartOverlay();
+    renewCartSum();
 }
 
 function placeOrder() {
     if (cart.length > 0) {
-        orderSuccess();
+        showOrdered();
     } else {
         orderError();
     }
 }
 
-function orderSuccess() {
+function showOrdered(){
     cart = [];
     renderCart();
-    let message = document.getElementById("order-message");
-    message.classList.add("show");
+    renewCartSum();
+    document.getElementById("order-overlay").style.display = "flex";
+}
 
-    setTimeout(() => {
-        message.classList.remove("show");
-    }, 3000);
+function hideOrdered(){
+    document.getElementById("order-overlay").style.display = "none";
 }
 
 function orderError() {
@@ -79,55 +110,6 @@ function orderError() {
     }, 3000);
 }
 
-function showOverlay() {
-    document.getElementById("overlay-cart_overlay").style.display = "block";
-    document.body.style.overflow = "hidden";
-    renderCartOverlay();
-}
-
-function hideOverlay() {
-    document.getElementById("overlay-cart_overlay").style.display = "none";
-    document.body.style.overflow = "auto";
-}
-
-function renderCartOverlay() {
-    let items = document.getElementById("overlay-cart-items");
-    let total = 0;
-    let delivery = 1.9;
-    items.innerHTML = "";
-    for (let i = 0; i < cart.length; i++) {
-        items.innerHTML += getCartItems(i);
-        total += cart[i].price * cart[i].amount + delivery;
-    }
-    document.getElementById("overlay-total").innerHTML =
-        total.toFixed(2).replace(".", ",") + " €";
-}
-
-function placeOrderOverlay() {
-    if (cart.length > 0) {
-        overlayOrderSuccess();
-    } else {
-        overlayOrderError();
-    }
-}
-
-function overlayOrderSuccess() {
-    cart = [];
-    renderCart();
-    renderCartOverlay();
-    let message = document.getElementById("overlay-order-message");
-    message.classList.add("show");
-
-    setTimeout(() => {
-        message.classList.remove("show");
-    }, 3000);
-}
-
-function overlayOrderError() {
-    let errorMessage = document.getElementById("overlay-error-message");
-    errorMessage.classList.add("show");
-
-    setTimeout(() => {
-        errorMessage.classList.remove("show");
-    }, 3000);
+function toggleOverlay(){
+    document.getElementById("cart_overlay").classList.toggle('d-none');
 }

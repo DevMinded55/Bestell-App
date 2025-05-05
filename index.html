@@ -7,7 +7,6 @@
         <link rel="stylesheet" href="style.css" />
         <link rel="stylesheet" href="./styles/cart.css" />
         <link rel="stylesheet" href="styles/standard.css" />
-        <link rel="stylesheet" href="styles/overlayCart.css" />
         <link
             rel="shortcut icon"
             href="./assets/icons/favicon.ico"
@@ -17,12 +16,6 @@
     <body onload="renderDishes()">
         <header>
             <img src="./assets/img/Logo.png" alt="" />
-            <img
-                class="cart_logo"
-                onclick="showOverlay()"
-                src="./assets/icons/cart logo.png"
-                alt=""
-            />
         </header>
         <section class="hero-section">
             <img src="./assets/img/pizza.jpg" alt="" />
@@ -33,7 +26,7 @@
             <h1>Pizza House</h1>
             <span>Bewertung: 4,3 / 5 (1822)</span>
             <p>
-                Genieße frisch zubereitete Pizzen im Pizza House<br />Hier
+                Genieße frisch zubereitete Pizzen im Pizza House.<br />Hier
                 findet jeder seine perfekte Pizza!
             </p>
         </section>
@@ -44,52 +37,43 @@
                 <div id="menu_items" class="menu-items"></div>
             </section>
 
-            <aside class="cart">
-                <div class="cart_all">
-                    <h2>Warenkorb</h2>
-                    <div id="cart-items"></div>
-                    <p class="delivery_cost">
-                        <strong>Lieferkosten:</strong> <span>1,90 €</span>
-                    </p>
-                    <p class="sum">
-                        <strong>Gesamt:</strong> <span id="total">0.00 €</span>
-                    </p>
-                    <button onclick="placeOrder()" id="order-button">
-                        Bestellen
-                    </button>
-                    <div id="order-message">Bestellung verschickt!</div>
-                    <div id="error-message">Kein Gericht ausgewählt!</div>
-                </div>
+            <aside id="cart_overlay" class="cart wrapper d-none">
+
+                    <div class="cart_all">
+                        <h2>Warenkorb</h2>
+                        <img
+                            id="close-overlay"
+                            onclick="toggleOverlay()"
+                            src="./assets/icons/close.png"
+                            alt=""
+                        />
+                        <div id="cart-items"></div>
+                        <p class="delivery_cost">
+                            <strong>Lieferkosten:</strong> <span>1,90 €</span>
+                        </p>
+                        <p class="sum">
+                            <strong>Gesamt:</strong>
+                            <span id="total">0.00 €</span>
+                        </p>
+                        <button onclick="placeOrder()" id="order-button">
+                            Bestellen
+                        </button>
+                        <div id="order-message">Bestellung verschickt!</div>
+                        <div id="error-message">Kein Gericht ausgewählt!</div>
+                    </div>
             </aside>
         </main>
         <footer>
             <a href="#">Impressum</a>
             <a href="#">Datenschutzerklärung</a>
         </footer>
-        <section id="overlay-cart_overlay">
-            <div class="overlay-cart_all">
-                <h2>Warenkorb</h2>
-                <img
-                    id="close-overlay"
-                    onclick="hideOverlay()"
-                    src="./assets/icons/close.png"
-                    alt=""
-                />
-                <div id="overlay-cart-items"></div>
-                <p class="overlay-delivery_cost">
-                    <strong>Lieferkosten:</strong> <span>1,90 €</span>
-                </p>
-                <p class="overlay-sum">
-                    <strong>Gesamt:</strong>
-                    <span id="overlay-total">0.00 €</span>
-                </p>
-                <button onclick="placeOrderOverlay()" id="overlay-order-button">
-                    Bestellen
-                </button>
-                <div id="overlay-order-message">Bestellung verschickt!</div>
-                <div id="overlay-error-message">Kein Gericht ausgewählt!</div>
-            </div>
-        </section>
+        <div id="order-overlay" class="order_overlay d-none">
+            <img onclick="hideOrdered()" class="close-overlay" src="./assets/icons/close.png" alt="">
+            <p>Bestellung verschickt!</p>
+        </div>
+        <div class="logo_area" onclick="toggleOverlay()">
+            <img class="logo_cart" src="./assets/icons/cart logo.png" alt="" />
+        </div>
     </body>
     <script src="./scripts/templates.js"></script>
     <script src="./scripts/db.js"></script>
